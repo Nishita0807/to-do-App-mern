@@ -34,7 +34,9 @@ mongoose.connect(process.env.MONGO_URI, {
 //api endpoints
 app.use("/api/user", userRouter)
 app.use("/api/task", taskRouter)
-
+app.get('/',(req,res)=>{
+    res.status(200).send("hello from server");
+})
 
 //listen
 app.listen(port, () => console.log(`Listening on localhost:${port}`))
