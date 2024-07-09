@@ -14,7 +14,11 @@ mongoose.set('strictQuery', true);
 
 //middlewares
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: ["https://to-do-app-mern-five.vercel.app"],
+    methods: ['POST', 'GET'],
+    credentials: true,
+}));
 
 //db config
 mongoose.connect(process.env.MONGO_URI, {
@@ -30,7 +34,9 @@ mongoose.connect(process.env.MONGO_URI, {
 //api endpoints
 app.use("/api/user", userRouter)
 app.use("/api/task", taskRouter)
-
+app.get('/',(req,res)=>{
+    res.status(200).send("hello from server");
+})
 
 //listen
 app.listen(port, () => console.log(`Listening on localhost:${port}`))
