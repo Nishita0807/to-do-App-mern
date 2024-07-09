@@ -14,7 +14,11 @@ mongoose.set('strictQuery', true);
 
 //middlewares
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: ["https://to-do-app-mern-five.vercel.app"],
+    methods: ['POST', 'GET'],
+    credentials: true,
+}));
 
 //db config
 mongoose.connect(process.env.MONGO_URI, {
